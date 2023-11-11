@@ -5,37 +5,40 @@
   * The library should be uploaded to: vendor/php-email-form/php-email-form.php
   * For more info and help: https://bootstrapmade.com/php-email-form/
   */
+die(11111);
+if(isset($_POST["submit"])) {
+}
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\Exception;
+
 
   // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'bilalelbasri9@gmail.com';
+$receiving_email_address = 'bilalelbasri9@gmail.com';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+if(isset($_POST["submit"])) {
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'itforconsult@gmail.com';
+    $mail->Password = 'bwnu orig anfg ykic';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->setFrom('bilal-el-basri@hotmail.fr');
+    $mail->addAddress($_POST["email"]);
+    $mail->isHTML(true);
+    $mail->Subject = 'ops';
+    $mail->Body = 'opsBody';
+    $mail->send();
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
-
-  echo $contact->send();
+    echo "
+    Sent Succesfly
+    ";
+}
 ?>
