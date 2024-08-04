@@ -1363,3 +1363,19 @@ section {
     padding: 3px 0;
   }
 }
+
+.service-icon {
+  font-size: 48px; /* Taille de l'icône */
+  color: #2c3e50; /* Couleur de l'icône */
+  margin: 10px; /* Marge autour de l'icône */
+  text-align: center; /* Centrer l'icône */
+  display: inline-block; /* Pour afficher les icônes en ligne */
+}
+
+.service-icon i {
+  transition: color 0.3s; /* Transition pour l'effet de survol */
+}
+
+.service-icon i:hover {
+  color: #3498db; /* Couleur de l'icône au survol */
+}
